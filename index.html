@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIS 565 — Oakridge Technologies Lab Tour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- MAIN SPLIT LAYOUT                                            -->
+<!-- Left: Guacamole iframe    Right: Lab tour panel               -->
+<!-- ============================================================ -->
+<div class="split-layout">
+
+    <!-- LEFT PANEL: Kali Desktop via Guacamole -->
+    <div class="desktop-panel" id="desktopPanel">
+        <iframe 
+            id="guacFrame"
+            src="http://5.161.117.41:8080/guacamole/#/client/MQBjAHBvc3RncmVzcWw"
+            allow="clipboard-read; clipboard-write"
+            class="guac-iframe">
+        </iframe>
+    </div>
+
+    <!-- COLLAPSE/EXPAND TAB -->
+    <button class="collapse-tab" id="collapseTab" title="Toggle lab panel">
+        <span class="collapse-icon" id="collapseIcon">›</span>
+    </button>
+
+    <!-- RIGHT PANEL: Lab Tour -->
+    <div class="lab-panel" id="labPanel">
+
+        <!-- Header -->
+        <div class="lab-header">
+            <div class="lab-logo">CIS 565</div>
+            <h1 class="lab-title">Oakridge Technologies</h1>
+            <p class="lab-subtitle">Guided Lab Tour</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <span class="progress-text" id="progressText">0 / 8 stops</span>
+        </div>
+
+        <p style="font-size: 0.9rem; margin: 0.6rem;">Note: If your terminal freezes up, try clicking in it a few times. That should unfreeze it!</p>
+
+        <!-- Collapse Message -->
+        <div class="collapse-message">
+            <span class="collapse-msg-icon">💡</span>
+            Want to collapse this panel and explore on your own? Feel free! The 'lab' is just here to give you 
+            an idea of what a lab could be like. Click the arrow tab on the left edge of this panel to close it.
+        </div>
+
+        <!-- Tour Content (scrollable) -->
+        <div class="tour-content" id="tourContent" style="margin-top: 1rem;">
+
+            <!-- ========== STOP 1: HOME DIRECTORY ========== -->
+            <div class="tour-stop" data-stop="1">
+                <div class="stop-header" onclick="toggleStop(1)">
+                    <span class="stop-number">1</span>
+                    <span class="stop-title">Home Sweet Home</span>
+                    <span class="stop-chevron" id="chevron-1">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-1">
+                    <p>Let's start with the basics! Double-click the <strong>Home</strong> icon on the desktop (or click the file manager icon in the taskbar — it looks like a folder).</p>
+                    <p>You should see several folders sitting there:</p>
+                    <ul>
+                        <li>📁 <code>emails</code></li>
+                        <li>📁 <code>pcaps</code></li>
+                        <li>📁 <code>network</code></li>
+                        <li>📁 <code>bash_histories</code></li>
+                    </ul>
+                    <p>These are all pre-loaded with data from Oakridge Technologies — a fictional company that's had a very eventful two weeks. We can explore each folder.</p>
+                    
+                    <div class="question-card">
+                        <div class="question-label">🤔 Tour Question</div>
+                        <p>How many folders do you see in the analyst's home directory?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q1" placeholder="Type your answer...">
+                            <button class="check-btn" onclick="checkAnswer(1, 'q1', ['8', 'eight', 'Eight', 'EIGHT'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 2: EMAILS ========== -->
+            <div class="tour-stop" data-stop="2">
+                <div class="stop-header" onclick="toggleStop(2)">
+                    <span class="stop-number">2</span>
+                    <span class="stop-title">You've Got Mail</span>
+                    <span class="stop-chevron" id="chevron-2">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-2">
+                    <p>Open the <code>emails</code> folder. Inside you'll find an <code>inbox</code> and a <code>sent</code> folder — just like a real email account.</p>
+                    <p>Browse through the inbox. You'll see normal work stuff — meeting reminders, server alerts, security reports. But a couple of these emails are... <em>not what they seem</em>. 👀</p>
+                    
+                    <div class="how-to-panel">
+                        <div class="how-to-header" onclick="toggleHowTo(this)">
+                            <span>📖 How to open .eml files</span>
+                            <span class="how-to-chevron">▸</span>
+                        </div>
+                        <div class="how-to-body">
+                            <p>Right-click any <code>.eml</code> file → Open With → choose <strong>Mousepad</strong> (the text editor). The emails are plain text so they'll open right up.</p>
+                        </div>
+                    </div>
+
+                    <p>Take a close look at email <code>04_PHISHING.eml</code>. Read it carefully — the sender address, the urgency, the link...</p>
+
+                    <div class="question-card">
+                        <div class="question-label">🎣 Spot the Phish</div>
+                        <p>What's the sender's domain in the first phishing email? (Hint: it's NOT oakridgetech.com)</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q2" placeholder="Type the domain...">
+                            <button class="check-btn" onclick="checkAnswer(2, 'q2', ['oakridgetech-helpdesk.com'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-2"></div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">🔍 Double Trouble</div>
+                        <p>There's a SECOND phishing email. Check <code>05_phishing2.eml</code> — what sneaky trick did they pull with the domain name? (What character was added that shouldn't be there?)</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q2b" placeholder="What's different about the domain?">
+                            <button class="check-btn" onclick="checkAnswer('2b', 'q2b', ['0', 'zero', 'o is a 0', '0akridgetech', 'the o is a zero', 'used a zero'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-2b"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 3: AUTH LOGS ========== -->
+            <div class="tour-stop" data-stop="3">
+                <div class="stop-header" onclick="toggleStop(3)">
+                    <span class="stop-number">3</span>
+                    <span class="stop-title">Who's Knocking?</span>
+                    <span class="stop-chevron" id="chevron-3">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-3">
+                    <p>Time to check the authentication logs! Open a terminal (right-click the desktop → Open Terminal Here, or click the terminal icon in the taskbar).</p>
+                    <p>Type this command:</p>
+                    <div class="code-block">cat /var/log/auth.log | grep "Failed password" | head -20</div>
+                    <p>This shows the first 20 failed login attempts. Normal systems always have a few — people mistype their passwords. But scroll through... does anything jump out?</p>
+                    <p>Now try this:</p>
+                    <div class="code-block">cat /var/log/auth.log | grep "Failed password" | grep "203.0.113.42"</div>
+                    <p>Whoa. That one IP address tried A LOT of passwords. That's not a typo — that's a <strong>brute force attack</strong>. 😬</p>
+
+                    <div class="question-card">
+                        <div class="question-label">🚨 The Intruder</div>
+                        <p>Did the attacker (203.0.113.42) ever successfully log in? Try this:<br>
+                        <code>cat /var/log/auth.log | grep "203.0.113.42" | grep "Accepted"</code></p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q3" placeholder="Yes or No?">
+                            <button class="check-btn" onclick="checkAnswer(3, 'q3', ['yes'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-3"></div>
+                    </div>
+
+                    <div class="question-card">
+                        <div class="question-label">😱 Whose Account?</div>
+                        <p>Whose account did they break into?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q3b" placeholder="Username...">
+                            <button class="check-btn" onclick="checkAnswer('3b', 'q3b', ['jsmith', 'john smith', 'john'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-3b"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 4: APACHE LOGS ========== -->
+            <div class="tour-stop" data-stop="4">
+                <div class="stop-header" onclick="toggleStop(4)">
+                    <span class="stop-number">4</span>
+                    <span class="stop-title">Web Server Under Fire</span>
+                    <span class="stop-chevron" id="chevron-4">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-4">
+                    <p>The web server keeps its own logs. Let's peek:</p>
+                    <div class="code-block">cat /var/log/apache2/access.log | grep "Nikto" | head -10</div>
+                    <p>Nikto is a well-known <strong>vulnerability scanner</strong> — it's like someone walking down a hallway trying every door handle. See all those paths it tried? <code>/admin</code>, <code>/phpmyadmin</code>, <code>/.env</code>... it's looking for common weak spots.</p>
+                    <p>Now check for something nastier:</p>
+                    <div class="code-block">cat /var/log/apache2/access.log | grep "sqlmap"</div>
+                    <p>That's <strong>SQL injection</strong> — someone trying to trick the database into giving up data it shouldn't. See the <code>UNION SELECT</code> and <code>DROP TABLE</code> in the URLs? Yikes.</p>
+
+                    <div class="question-card">
+                        <div class="question-label">🕵️ Scanner ID</div>
+                        <p>What IP address was running the Nikto vulnerability scan?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q4" placeholder="IP address...">
+                            <button class="check-btn" onclick="checkAnswer(4, 'q4', ['185.220.101.34'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-4"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 5: FIREWALL LOGS ========== -->
+            <div class="tour-stop" data-stop="5">
+                <div class="stop-header" onclick="toggleStop(5)">
+                    <span class="stop-number">5</span>
+                    <span class="stop-title">The Firewall's Diary</span>
+                    <span class="stop-chevron" id="chevron-5">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-5">
+                    <p>The firewall logs every connection it allows or blocks. Let's see what it's been up to:</p>
+                    <div class="code-block">cat /var/log/firewall.log | grep "BLOCK" | head -20</div>
+                    <p>Those are all connections the firewall said "no" to. Random IPs trying to connect to ports like 3389 (Remote Desktop), 445 (file sharing), 1433 (SQL Server)... just bots scanning the internet. Normal background noise.</p>
+                    <p>But check this out — remember that vulnerability scanner?</p>
+                    <div class="code-block">cat /var/log/firewall.log | grep "185.220.101.34"</div>
+                    <p>That's a <strong>port scan</strong>! They tried every common port to see what's open. Notice how some say ALLOW (ports 22, 80, 443) and the rest say BLOCK? Now the attacker knows exactly which doors are unlocked.</p>
+
+                    <div class="question-card">
+                        <div class="question-label">🚪 Open Doors</div>
+                        <p>Based on the firewall logs, which three ports were OPEN (ALLOW) during the port scan?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q5" placeholder="e.g. 22, 80, 443">
+                            <button class="check-btn" onclick="checkAnswer(5, 'q5', ['22, 80, 443', '22 80 443', '80 443 22', '22,80,443'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 6: SYSTEM LOGS ========== -->
+            <div class="tour-stop" data-stop="6">
+                <div class="stop-header" onclick="toggleStop(6)">
+                    <span class="stop-number">6</span>
+                    <span class="stop-title">What Happened Next</span>
+                    <span class="stop-chevron" id="chevron-6">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-6">
+                    <p>Remember the attacker who broke into jsmith's account? Let's see what they did after. Check the system log:</p>
+                    <div class="code-block">cat /var/log/syslog | grep "sysbackup"</div>
+                    <p>Oh no. The attacker <strong>created a new user account</strong> called "sysbackup" and added it to the sudo group (giving it admin privileges). They also set up a cron job — a scheduled task that runs automatically. That's a <strong>backdoor</strong>. Even if someone changes jsmith's password, the attacker still has a way in. 😰</p>
+
+                    <div class="question-card">
+                        <div class="question-label">🚪 The Backdoor</div>
+                        <p>What's the name of the suspicious script the attacker scheduled to run automatically?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q6" placeholder="Filename...">
+                            <button class="check-btn" onclick="checkAnswer(6, 'q6', ['beacon.sh', '/tmp/.hidden/beacon.sh'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-6"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 7: BASH HISTORIES ========== -->
+            <div class="tour-stop" data-stop="7">
+                <div class="stop-header" onclick="toggleStop(7)">
+                    <span class="stop-number">7</span>
+                    <span class="stop-title">Caught on Tape</span>
+                    <span class="stop-chevron" id="chevron-7">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-7">
+                    <p>Bash history files record every command a user types. Open the file manager and go to the <code>bash_histories</code> folder.</p>
+                    <p>Compare what normal employees were doing:</p>
+                    <div class="code-block">cat ~/bash_histories/jsmith_admin.bash_history</div>
+                    <div class="code-block">cat ~/bash_histories/agarcia_dev.bash_history</div>
+                    <p>Now look at what the attacker did after breaking in:</p>
+                    <div class="code-block">cat ~/bash_histories/attacker_post_compromise.bash_history</div>
+                    <p>Read through it line by line. They checked who they were (<code>whoami</code>), escalated to root, created a backdoor user, set up a beacon script that phones home to their server, stole data, and then tried to cover their tracks with <code>history -c</code>. Classic attack playbook. 🕵️</p>
+
+                    <div class="question-card">
+                        <div class="question-label">📦 Data Heist</div>
+                        <p>The attacker compressed and stole data. What command did they use to exfiltrate (copy out) the stolen files?</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q7" placeholder="Command name...">
+                            <button class="check-btn" onclick="checkAnswer(7, 'q7', ['scp', 'scp /tmp/.hidden/data.tar.gz'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-7"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== STOP 8: PACKET CAPTURES ========== -->
+            <div class="tour-stop" data-stop="8">
+                <div class="stop-header" onclick="toggleStop(8)">
+                    <span class="stop-number">8</span>
+                    <span class="stop-title">Seeing the Traffic</span>
+                    <span class="stop-chevron" id="chevron-8">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-8">
+                    <p>Last stop! Packet captures let you see the actual network traffic — every single packet that traveled across the wire. Open Wireshark from the terminal:</p>
+                    <div class="code-block">wireshark ~/pcaps/suspicious_ssh_sept23.pcap</div>
+                    <p>You're now looking at the brute force attack <em>as it happened on the network</em>. Each row is one packet. Notice:</p>
+                    <ul>
+                        <li>The source IP is always <code>203.0.113.42</code> (the attacker)</li>
+                        <li>The destination is always <code>10.10.20.5</code> (the domain controller)</li>
+                        <li>The protocol is SSHv2 — they're hammering the SSH port</li>
+                    </ul>
+                    <p>Try opening the other captures too — <code>web_attack_sept25.pcap</code> shows the SQL injection attempts, and <code>data_exfil_sept23.pcap</code> shows the stolen data leaving the network.</p>
+
+                    <div class="question-card">
+                        <div class="question-label">📡 Packet Count</div>
+                        <p>How many packets are in the suspicious SSH capture? (Look at the bottom of the Wireshark window)</p>
+                        <div class="answer-area">
+                            <input type="text" class="answer-input" id="q8" placeholder="Number...">
+                            <button class="check-btn" onclick="checkAnswer(8, 'q8', ['40'])">Check</button>
+                        </div>
+                        <div class="answer-feedback" id="feedback-8"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== NETWORK CONFIG (BONUS) ========== -->
+            <div class="tour-stop" data-stop="bonus">
+                <div class="stop-header bonus-header" onclick="toggleStop('bonus')">
+                    <span class="stop-number bonus-number">★</span>
+                    <span class="stop-title">Bonus: Network Layout</span>
+                    <span class="stop-chevron" id="chevron-bonus">▸</span>
+                </div>
+                <div class="stop-body" id="stop-body-bonus">
+                    <p>If you want to see how Oakridge's network is set up, check the <code>network</code> folder. It contains:</p>
+                    <ul>
+                        <li><code>interfaces.conf</code> — Network interface configuration</li>
+                        <li><code>hosts</code> — Maps IP addresses to hostnames</li>
+                        <li><code>oakridgetech.com.zone</code> — DNS zone file</li>
+                        <li><code>firewall_rules.txt</code> — The complete firewall ruleset</li>
+                    </ul>
+                    <p>These give you the full picture of the company's infrastructure — who's on which IP, what's in the DMZ vs internal network, and exactly what the firewall allows.</p>
+                </div>
+            </div>
+
+            <!-- ========== TOUR COMPLETE ========== -->
+            <div class="tour-complete" id="tourComplete">
+                <div class="complete-icon">🎉</div>
+                <h2>Tour Complete!</h2>
+                <p>You've explored the entire Oakridge Technologies environment. You've seen authentication logs, phishing emails, firewall activity, vulnerability scans, SQL injection attempts, a full system compromise, and network packet captures.</p>
+                <p>This is what the student labs will look like — the same split-panel layout with guided instructions, but with actual assignments and graded questions.</p>
+                <p>Feel free to keep poking around! The environment is yours to explore. Try running commands in the terminal, opening files, or looking through logs for things the tour didn't cover.</p>
+            </div>
+
+        </div><!-- /tour-content -->
+    </div><!-- /lab-panel -->
+</div><!-- /split-layout -->
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
