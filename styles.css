@@ -74,6 +74,7 @@ html, body {
     justify-content: center;
     transition: background 0.2s ease;
     z-index: 10;
+    background-color: rgb(64, 75, 82);
 }
 
 .collapse-tab:hover {
