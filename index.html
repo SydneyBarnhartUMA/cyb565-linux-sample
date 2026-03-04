@@ -345,8 +345,9 @@
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
-<script> document.querySelector('iframe').addEventListener('click', function() {
-    this.contentWindow.focus();
+<script>
+document.querySelector('.lab-panel').addEventListener('click', function() {
+    document.querySelector('iframe').focus();
 });
 </script>
 </body>
