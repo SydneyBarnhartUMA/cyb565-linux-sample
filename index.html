@@ -345,5 +345,9 @@
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
+<script> document.querySelector('iframe').addEventListener('click', function() {
+    this.contentWindow.focus();
+});
+</script>
 </body>
 </html>
